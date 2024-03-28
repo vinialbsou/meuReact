@@ -7,6 +7,63 @@
   pointer-events: none;
 }
 
+/* styles.css */
+.top-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.menu ul li {
+  margin-right: 20px;
+}
+
+.menu ul li:last-child {
+  margin-right: 0;
+}
+
+.menu ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.login-button button {
+  background-color: #fff;
+  color: #333;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+/*Icon login*/
+.login-button button {
+  background-color: #333;
+  color: #333;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.iconImage {
+  width: 32px;
+  height: 32px;
+}
+
+.login-button button svg {
+  margin-right: 5px;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
