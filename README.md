@@ -68,3 +68,71 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+Adições
+
+
+# Setup Docker React
+
+### Passo a passo
+Clone Repositório
+```sh
+git remote add origin https://github.com/vinialbsou/meuReact.git
+```
+```sh
+cd app-react
+```
+
+Execute sempre fora para instalação anes de executar o docker executado
+
+Execute
+```sh
+php npm install
+```
+
+Adicionar package.json
+```sh
+npm init
+```
+
+Pode rodar também
+```sh
+npm install react-scripts --save
+```
+
+Se necessário
+```sh
+npm audit fix --force
+```
+
+Para executar caso o docker do react de erro:
+```sh
+ npm install webpack-cli --save-dev --legacy-peer-deps
+```
+
+Atualizar dependencias no npm
+```sh
+npm update --legacy-peer-deps
+```
+
+Atualizar node
+Para instalar o nvm - precisara reiniciar o terminal
+```sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
+```
+Depois execute
+```sh
+nvm install 14 # ou a versão que deseja
+
+```
+
+```sh
+create-react-app app-react/
+```
+
+Instalar babel
+```sh
+npm install --save-dev @babel/core @babel/preset-env @babel/preset-react babel-loader
+```
