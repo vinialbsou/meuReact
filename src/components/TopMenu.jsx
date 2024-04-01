@@ -18,7 +18,7 @@ const TopMenu = () => {
                 </ul>
             </div>
             <div className="login-button">
-                <Tooltip title="Clique aqui">
+                <Tooltip title="Logar">
                     <button>
                         <Link to="/login">
                             <img src={iconLoginImage} alt="Login" className="iconImage"/> {/* add login icon*/}
