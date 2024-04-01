@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Button, Typography, Container } from '@mui/material';
+import { TextField, Button, Typography, Container, Link } from '@mui/material';
 import { styled } from '@mui/material/styles'; // Importe styled
 
 const useStyles = styled((theme) => ({
@@ -75,6 +75,12 @@ const Login = () => {
                     >
                         Entrar
                     </Button>
+                    <Typography>
+                        Não tem uma conta?{' '}
+                        <Link href="/singup" variant="body2">
+                            Cadastre-se
+                        </Link>
+                    </Typography>
                 </form>
             </div>
         </Container>
