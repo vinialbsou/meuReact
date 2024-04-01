@@ -1,40 +1,83 @@
 import React, { useState } from 'react';
+import { TextField, Button, Typography, Container } from '@mui/material';
+import { styled } from '@mui/material/styles'; // Importe styled
+
+const useStyles = styled((theme) => ({
+    root: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginTop: theme.spacing(8),
+    },
+    form: {
+        width: '100%',
+        marginTop: theme.spacing(1),
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+        backgroundColor: '#ff0000',
+        color: '#fff',
+        '&:hover': {
+            backgroundColor: '#cc0000',
+        },
+    },
+}));
 
 const Login = () => {
+    const classes = useStyles();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
-
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Aqui você pode adicionar a lógica para autenticar o usuário com o email e senha
-        console.log('Email:', email, 'Senha:', password);
+        console.log(`Email: ${email}, Password: ${password}`);
+        // Adicione aqui a lógica para autenticação
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Email:
-                    <input type="email" value={email} onChange={handleEmailChange} />
-                </label>
-                <br />
-                <label>
-                    Senha:
-                    <input type="password" value={password} onChange={handlePasswordChange} />
-                </label>
-                <br />
-                <button type="submit">Entrar</button>
-            </form>
-        </div>
+        <Container component="main" maxWidth="xs">
+            <div className={classes.root}>
+                <Typography component="h1" variant="h5">
+                    Login
+                </Typography>
+                <form className={classes.form} onSubmit={handleSubmit}>
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email"
+                        name="email"
+                        autoComplete="email"
+                        autoFocus
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Senha"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        className={classes.submit}
+                    >
+                        Entrar
+                    </Button>
+                </form>
+            </div>
+        </Container>
     );
 };
 
