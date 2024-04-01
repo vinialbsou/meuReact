@@ -3,6 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faUser} from '@fortawesome/free-solid-svg-icons';
 import {Link} from 'react-router-dom';
 import iconLoginImage from '../assets/icons/loginIcon.jpg';
+import { Button, Tooltip } from '@mui/material';
 
 const TopMenu = () => {
     return (
@@ -17,11 +18,13 @@ const TopMenu = () => {
                 </ul>
             </div>
             <div className="login-button">
-                <button>
-                    <Link to="/login">
-                        <img src={iconLoginImage} alt="Login" className="iconImage"/> {/* add login icon*/}
-                    </Link>
-                </button>
+                <Tooltip title="Clique aqui">
+                    <button>
+                        <Link to="/login">
+                            <img src={iconLoginImage} alt="Login" className="iconImage"/> {/* add login icon*/}
+                        </Link>
+                    </button>
+                </Tooltip>
             </div>
         </div>
     );
