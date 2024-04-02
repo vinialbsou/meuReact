@@ -64,6 +64,64 @@
 .login-button button svg {
   margin-right: 5px;
 }
+
+/* SignUp Css */
+.cadastro-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+  margin: 0 auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+  color: #777;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding-left: 35px; /* Ajuste para acomodar o label */
+}
+
+input:focus + label,
+input:not(:placeholder-shown) + label {
+  font-size: 12px;
+  color: #333;
+}
+
+.btn-cadastrar {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.btn-cadastrar:hover {
+  background-color: #555;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

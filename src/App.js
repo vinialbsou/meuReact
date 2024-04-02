@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Login from './components/Login.jsx';
 import TopMenu from './components/TopMenu.jsx';
+import SignUp from './components/SignUp.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                 <TopMenu />
                 <Routes>
                     <Route path="/login" element={<Login />} />
+                    <Route path="/singup" element={<SignUp />} />
                 </Routes>
             </div>
         </Router>
