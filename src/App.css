@@ -71,7 +71,7 @@
   padding: 20px;
   border-radius: 5px;
   width: 300px;
-  margin: 0 auto;
+  margin: 50px auto;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -95,8 +95,8 @@ label {
   pointer-events: none;
 }
 
-input {
-  width: 100%;
+input.register {
+  width: 75%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
