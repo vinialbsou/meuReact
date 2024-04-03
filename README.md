@@ -124,7 +124,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 ```
 Depois execute
 ```sh
-nvm install 14 # ou a versão que deseja
+nvm install 21 # ou a versão que deseja
 
 ```
 
@@ -135,4 +135,19 @@ create-react-app app-react/
 Instalar babel
 ```sh
 npm install --save-dev @babel/core @babel/preset-env @babel/preset-react babel-loader
+```
+
+instalar axios para conversar com as apis laravel
+```sh
+npm install axios
+```
+
+instalar react-redux redux redux-saga
+```sh
+npm install react-redux redux redux-saga
+```
+
+nova versao de npm caso precise atualizar
+```sh
+ npm install -g npm 
 ```
