@@ -8,6 +8,7 @@ const CadastroUsuario = () => {
     const [confirmarSenha, setConfirmarSenha] = useState('');
     const [cpf, setCpf] = useState('');
     const [dataNascimento, setDataNascimento] = useState('');
+    const [genero, setGenero] = useState('');
     const [cidade, setCidade] = useState('');
     const [estado, setEstado] = useState('');
     const [pais, setPais] = useState('');
@@ -99,6 +100,28 @@ const CadastroUsuario = () => {
                         required
                         placeholder="Data de Nascimento"
                     />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="genero">Gênero:</label>
+                    <select
+                        id="genero"
+                        className="register"
+                        value={genero}
+                        onChange={(e) => setGenero(e.target.value)}
+                        required
+                    >
+                        <option value="">Selecione...</option>
+                        <option value="cis_women">Mulher cisgênero</option>
+                        <option value="trans_women">Mulher transexual</option>
+                        <option value="cis_man">Homem cisgênero</option>
+                        <option value="trans_man">Homem transexual</option>
+                        <option value="non_binary">Gênero não-binário</option>
+                        <option value="agender">Agênero</option>
+                        <option value="fluid_gender">Gênero-fluido</option>
+                        <option value="Bigender">Bigênero</option>
+                        <option value="Polygender">Poligênero</option>
+                        <option value="Gender_neutral">Gênero neutro</option>
+                    </select>
                 </div>
                 <div className="form-group">
                     <input
