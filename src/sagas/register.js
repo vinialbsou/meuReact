@@ -1,23 +1,32 @@
-import { call, put, fork } from 'redux-saga/effects';
-import axios from 'axios';
+import {call, put, takeEvery} from 'redux-saga/effects';
 import {
     userRegister
 } from "../reducers/users";
 
 function* register(action) {
     try {
-        const response = yield call(axios.post, 'http://sua-api.com/login', action.payload);
-        // Se a chamada for bem-sucedida, dispara uma ação para atualizar o estado do Redux
-        yield put({ type: userRegister, payload: response.data });
-    } catch (error) {
-        // Se houver um erro na chamada, dispara uma ação para lidar com o erro
-        yield put({ type: 'GET_STATUS_FAIl', error: error.message });
+        const {language} = action.payload;
+        const response = yield call(userRegister, {language});
+        const {status} = response;
+        const responseData = response.data;
+
+        if (status.statusCode >= 0) {
+            //Send the return of the API Route to Payload
+            yield put({type: userRegister, payload: {responseData}});
+            //Save the return of the API Route to LocalStorage
+            const userPropertiesToString = JSON.stringify(responseData);
+            localStorage.setItem('userProperties', userPropertiesToString);
+        } else {
+            yield put({type: "GET_STATUS_FAIl", message: status.statusText});
+        }
+    } catch (e) {
+        yield put({type: "GET_STATUS_FAIl", message: e.message});
     }
 }
 
 // Assina a saga para ser executada quando a ação 'LOGIN_REQUEST' for despachada
 function* registerSaga() {
-    yield fork(userRegister, register);
+    yield takeEvery(userRegister, register);
 }
 
 export default registerSaga;

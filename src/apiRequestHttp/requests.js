@@ -11,7 +11,7 @@ export const DELETE = "delete";
 export const v1 = "v1";
 const appConfig = getAppConfig();
 const localDevAPiUrl =
-  appConfig.devApiUrl || "https://dev-testing.notyours.com/api";
+  appConfig.devApiUrl || "https://http://localhost:3000/api";
 const apiUrl = window.location.origin + `/api`;
 
 const activeUrl =

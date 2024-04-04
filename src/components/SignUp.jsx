@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import '../App.css';
+import userReducer  from '../reducers/users';
+import store from '../store/index.js';
 
-const CadastroUsuario = () => {
+
+const userRegistration = () => {
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
@@ -20,6 +23,7 @@ const CadastroUsuario = () => {
             alert('As senhas não são iguais');
             return;
         }
+
         // Aqui você pode enviar os dados do usuário para o backend
         console.log('Nome:', nome);
         console.log('Email:', email);
@@ -29,6 +33,14 @@ const CadastroUsuario = () => {
         console.log('Cidade:', cidade);
         console.log('Estado:', estado);
         console.log('País:', pais);
+    };
+
+    const handleSignUp = async () => {
+        try {
+            store.dispatch(userReducer(nome, email, senha, cpf, dataNascimento, cidade, estado, pais));
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -156,10 +168,10 @@ const CadastroUsuario = () => {
                         placeholder="País"
                     />
                 </div>
-                <button type="submit" className="btn-cadastrar">Cadastrar</button>
+                <button type="submit" className="btn-cadastrar" onClick={handleSignUp}>Cadastrar</button>
             </form>
         </div>
     );
 };
 
-export default CadastroUsuario;
+export default userRegistration;
