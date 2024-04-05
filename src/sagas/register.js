@@ -2,21 +2,27 @@ import {call, put, takeEvery} from 'redux-saga/effects';
 import {
     userRegister
 } from "../reducers/users";
+import {userRegisterApi} from "../apiRequestHttp/users";
 
 function* register(action) {
     try {
         const {language} = action.payload;
-        const response = yield call(userRegister, {language});
+        const response = yield call(userRegisterApi, {language});
         const {status} = response;
         const responseData = response.data;
 
-        if (status.statusCode >= 0) {
-            //Send the return of the API Route to Payload
-            yield put({type: userRegister, payload: {responseData}});
+        if (status && status.statusCode >= 0) {
+            // const {
+            //     data: {lastUpdated, reloadUi, notificationBar},
+            // } = response;
+
+            yield put({type: 'USER_REGISTER_SUCCESS', payload: {responseData}});
             //Save the return of the API Route to LocalStorage
             const userPropertiesToString = JSON.stringify(responseData);
             localStorage.setItem('userProperties', userPropertiesToString);
-        } else {
+
+        }
+        if (!status) {
             yield put({type: "GET_STATUS_FAIl", message: status.statusText});
         }
     } catch (e) {

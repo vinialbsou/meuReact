@@ -4,38 +4,57 @@ import Login from './components/Login.jsx';
 import TopMenu from './components/TopMenu.jsx';
 import SignUp from './components/SignUp.jsx';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import {Provider, connect, useDispatch } from 'react-redux';
-import store from './store/index.js';
+import {connect, Provider, useDispatch} from 'react-redux';
 import {
     userRegister
 } from "./reducers/users";
 
 function App(props) {
+    const dispatch = useDispatch();
 
-    useEffect(() => {
-        store.dispatch({
-            type: userRegister,
-            payload: {
-                language: props.language ?? 'pt-BR',
-            },
-        });
-    }, []);
+    dispatch({
+        type: userRegister,
+        payload: {
+            name: props.name,
+            email: props.email,
+            password: props.password,
+            cpf: props.cpf,
+            birthDate: props.birthDate,
+            genero: props.genero,
+            city: props.city,
+            state: props.state,
+            country: props.country,
+        },
+    });
 
     return (
-        <Provider store={store}>
-            <div className="App">
-                <Router>
-                    <div>
-                        <TopMenu/>
-                        <Routes>
-                            <Route path="/login" element={<Login/>}/>
-                            <Route path="/singup" element={<SignUp/>}/>
-                        </Routes>
-                    </div>
-                </Router>
-            </div>
-        </Provider>
+        <div className="App">
+            <Router>
+                <div>
+                    <TopMenu/>
+                    <Routes>
+                        <Route path="/login" element={<Login/>}/>
+                        <Route path="/singup" element={<SignUp/>}/>
+                    </Routes>
+                </div>
+            </Router>
+        </div>
     );
 }
 
-export default App;
+const mapState = (state) => ({
+    //language: state.language.language,
+    name: state.user.name,
+    email: state.user.email,
+    password: state.user.password,
+    cpf: state.user.cpf,
+    birthDate: state.user.birthDate,
+    genero: state.user.genero,
+    city: state.user.city,
+    state: state.user.state,
+    country: state.user.country,
+});
+
+const connector = connect(mapState);
+
+export default connector(App);

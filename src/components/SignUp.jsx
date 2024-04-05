@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import '../App.css';
-import userReducer  from '../reducers/users';
-import store from '../store/index.js';
-
+import axios from 'axios';
 
 const userRegistration = () => {
     const [nome, setNome] = useState('');
@@ -16,6 +15,7 @@ const userRegistration = () => {
     const [estado, setEstado] = useState('');
     const [pais, setPais] = useState('');
 
+    const dispatch = useDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
         // Verifica se as senhas são iguais
@@ -33,14 +33,13 @@ const userRegistration = () => {
         console.log('Cidade:', cidade);
         console.log('Estado:', estado);
         console.log('País:', pais);
+
     };
 
-    const handleSignUp = async () => {
-        try {
-            store.dispatch(userReducer(nome, email, senha, cpf, dataNascimento, cidade, estado, pais));
-        } catch (error) {
-            console.log(error);
-        }
+    const handleButtonClick = async () => {
+        // const response = await axios.get('https://api.example.com/register');
+        // console.log(response.data);
+        // dispatch({ type: 'USER_REGISTER', payload: {nome, email, senha, cpf, dataNascimento, cidade, estado, pais} }); // Dispatch da ação para buscar o usuário com ID 1
     };
 
     return (
@@ -168,7 +167,7 @@ const userRegistration = () => {
                         placeholder="País"
                     />
                 </div>
-                <button type="submit" className="btn-cadastrar" onClick={handleSignUp}>Cadastrar</button>
+                <button type="submit" className="btn-cadastrar" onClick={handleButtonClick}>Cadastrar</button>
             </form>
         </div>
     );
