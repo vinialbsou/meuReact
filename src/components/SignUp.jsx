@@ -1,46 +1,59 @@
-import React, {useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import '../App.css';
-import axios from 'axios';
+import {userRegister} from "../reducers/users";
 
-const userRegistration = () => {
-    const [nome, setNome] = useState('');
+function UserRegistration() {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
-    const [confirmarSenha, setConfirmarSenha] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [cpf, setCpf] = useState('');
-    const [dataNascimento, setDataNascimento] = useState('');
-    const [genero, setGenero] = useState('');
-    const [cidade, setCidade] = useState('');
-    const [estado, setEstado] = useState('');
-    const [pais, setPais] = useState('');
-
+    const [birthDate, setBirthDate] = useState('');
+    const [gender, setGender] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setStates] = useState('');
+    const [country, setCountry] = useState('');
     const dispatch = useDispatch();
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Verifica se as senhas são iguais
-        if (senha !== confirmarSenha) {
+        // Verifica se as passwords são iguais
+        if (password !== confirmPassword) {
             alert('As senhas não são iguais');
             return;
         }
 
-        // Aqui você pode enviar os dados do usuário para o backend
-        console.log('Nome:', nome);
-        console.log('Email:', email);
-        console.log('Senha:', senha);
-        console.log('CPF:', cpf);
-        console.log('Data de Nascimento:', dataNascimento);
-        console.log('Cidade:', cidade);
-        console.log('Estado:', estado);
-        console.log('País:', pais);
+        // console.log('name:', name);
+        // console.log('Email:', email);
+        // console.log('password:', password);
+        // console.log('CPF:', cpf);
+        // console.log('Data de Nascimento:', birthDate);
+        // console.log('city:', city);
+        // console.log('state:', state);
+        // console.log('País:', country);
 
     };
 
-    const handleButtonClick = async () => {
-        // const response = await axios.get('https://api.example.com/register');
-        // console.log(response.data);
-        // dispatch({ type: 'USER_REGISTER', payload: {nome, email, senha, cpf, dataNascimento, cidade, estado, pais} }); // Dispatch da ação para buscar o usuário com ID 1
-    };
+    function handleButtonClick(values) {
+        const cpf = values.cpf.replace(/\D/g, ''); //Only numbers
+
+        dispatch({
+            type: userRegister,
+            payload: {
+                    name: values.name,
+                    email: values.email,
+                    password: values.password,
+                    cpf: cpf,
+                    birthDate: values.birthDate,
+                    gender: values.gender,
+                    city: values.city,
+                    state: values.state,
+                    country: values.country
+            }
+        })
+    }
+
 
     return (
         <div className="cadastro-container">
@@ -50,11 +63,11 @@ const userRegistration = () => {
                     <input
                         type="text"
                         className="register"
-                        id="nome"
-                        value={nome}
-                        onChange={(e) => setNome(e.target.value)}
+                        id="name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                         required
-                        placeholder="Nome"
+                        placeholder="name"
                     />
                 </div>
                 <div className="form-group">
@@ -72,9 +85,9 @@ const userRegistration = () => {
                     <input
                         type="password"
                         className="register"
-                        id="senha"
-                        value={senha}
-                        onChange={(e) => setSenha(e.target.value)}
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         required
                         placeholder="Senha"
                     />
@@ -83,11 +96,11 @@ const userRegistration = () => {
                     <input
                         type="password"
                         className="register"
-                        id="confirmarSenha"
-                        value={confirmarSenha}
-                        onChange={(e) => setConfirmarSenha(e.target.value)}
+                        id="confirmPassword"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                         required
-                        placeholder="Confirmar Senha"
+                        placeholder="Confirmar password"
                     />
                 </div>
                 <div className="form-group">
@@ -105,20 +118,20 @@ const userRegistration = () => {
                     <input
                         type="date"
                         className="register"
-                        id="dataNascimento"
-                        value={dataNascimento}
-                        onChange={(e) => setDataNascimento(e.target.value)}
+                        id="birthDate"
+                        value={birthDate}
+                        onChange={(e) => setBirthDate(e.target.value)}
                         required
                         placeholder="Data de Nascimento"
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="genero">Gênero:</label>
+                    <label htmlFor="gender">Gênero:</label>
                     <select
-                        id="genero"
+                        id="gender"
                         className="register"
-                        value={genero}
-                        onChange={(e) => setGenero(e.target.value)}
+                        value={gender}
+                        onChange={(e) => setGender(e.target.value)}
                         required
                     >
                         <option value="">Selecione...</option>
@@ -138,9 +151,9 @@ const userRegistration = () => {
                     <input
                         type="text"
                         className="register"
-                        id="cidade"
-                        value={cidade}
-                        onChange={(e) => setCidade(e.target.value)}
+                        id="city"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
                         required
                         placeholder="Cidade"
                     />
@@ -149,9 +162,9 @@ const userRegistration = () => {
                     <input
                         type="text"
                         className="register"
-                        id="estado"
-                        value={estado}
-                        onChange={(e) => setEstado(e.target.value)}
+                        id="states"
+                        value={state}
+                        onChange={(e) => setStates(e.target.value)}
                         required
                         placeholder="Estado"
                     />
@@ -160,17 +173,29 @@ const userRegistration = () => {
                     <input
                         type="text"
                         className="register"
-                        id="pais"
-                        value={pais}
-                        onChange={(e) => setPais(e.target.value)}
+                        id="country"
+                        value={country}
+                        onChange={(e) => setCountry(e.target.value)}
                         required
                         placeholder="País"
                     />
                 </div>
-                <button type="submit" className="btn-cadastrar" onClick={handleButtonClick}>Cadastrar</button>
+                <button type="submit" className="btn-cadastrar" onClick={() => handleButtonClick({
+                    name,
+                    email,
+                    password,
+                    confirmPassword,
+                    cpf,
+                    birthDate,
+                    gender,
+                    city,
+                    state,
+                    country
+                })}>Cadastrar
+                </button>
             </form>
         </div>
     );
 };
 
-export default userRegistration;
+export default UserRegistration;

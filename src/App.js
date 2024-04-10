@@ -1,31 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './App.css';
 import Login from './components/Login.jsx';
 import TopMenu from './components/TopMenu.jsx';
 import SignUp from './components/SignUp.jsx';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import {connect, Provider, useDispatch} from 'react-redux';
-import {
-    userRegister
-} from "./reducers/users";
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 function App(props) {
-    const dispatch = useDispatch();
-
-    dispatch({
-        type: userRegister,
-        payload: {
-            name: props.name,
-            email: props.email,
-            password: props.password,
-            cpf: props.cpf,
-            birthDate: props.birthDate,
-            genero: props.genero,
-            city: props.city,
-            state: props.state,
-            country: props.country,
-        },
-    });
 
     return (
         <div className="App">
@@ -39,6 +20,7 @@ function App(props) {
                 </div>
             </Router>
         </div>
+
     );
 }
 

@@ -11,7 +11,7 @@ export const DELETE = "delete";
 export const v1 = "v1";
 const appConfig = getAppConfig();
 const localDevAPiUrl =
-  appConfig.devApiUrl || "https://http://localhost:3000/api";
+  appConfig.devApiUrl || "http://dev.laravel:8989/api";
 const apiUrl = window.location.origin + `/api`;
 
 const activeUrl =

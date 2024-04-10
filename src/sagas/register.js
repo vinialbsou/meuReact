@@ -6,25 +6,26 @@ import {userRegisterApi} from "../apiRequestHttp/users";
 
 function* register(action) {
     try {
-        const {language} = action.payload;
-        const response = yield call(userRegisterApi, {language});
+
+        // const {language} = action.payload;
+        const response = yield call(userRegisterApi, action.payload);
         const {status} = response;
         const responseData = response.data;
-
+        console.log('responseData', action.payload);
         if (status && status.statusCode >= 0) {
-            // const {
-            //     data: {lastUpdated, reloadUi, notificationBar},
-            // } = response;
-
-            yield put({type: 'USER_REGISTER_SUCCESS', payload: {responseData}});
+            yield put({type: 'USER_REGISTER_SUCCESS', payload: action.payload});
             //Save the return of the API Route to LocalStorage
             const userPropertiesToString = JSON.stringify(responseData);
             localStorage.setItem('userProperties', userPropertiesToString);
 
+        } else {
+            if (status.statusText) {
+                yield put({type: "GET_STATUS_FAIl", message: status.statusText});
+            }
         }
-        if (!status) {
-            yield put({type: "GET_STATUS_FAIl", message: status.statusText});
-        }
+        // if (!status) {
+        //     yield put({type: "GET_STATUS_FAIl", message: status.statusText});
+        // }
     } catch (e) {
         yield put({type: "GET_STATUS_FAIl", message: e.message});
     }
