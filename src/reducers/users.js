@@ -1,4 +1,5 @@
 export const userRegister = 'USER_REGISTER';
+export const userRegisterSuccess = 'USER_REGISTER_SUCCESS';
 
 const initialState = {
     userProperties: [],
@@ -20,7 +21,11 @@ export default function userReducer(state = initialState, action) {
                 state: action.payload.state,
                 country: action.payload.country,
             };
-
+        case userRegisterSuccess: // check if the user was registered successfully
+            return {
+                ...state,
+                success: true
+            };
         default:
             return state;
     }
