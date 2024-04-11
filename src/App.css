@@ -122,6 +122,11 @@ input:not(:placeholder-shown) + label {
   background-color: #555;
 }
 
+.password-match {
+  color: red;
+  font-size: 14px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

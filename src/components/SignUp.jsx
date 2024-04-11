@@ -15,14 +15,27 @@ function UserRegistration() {
     const [state, setStates] = useState('');
     const [country, setCountry] = useState('');
     const dispatch = useDispatch();
+    const [passwordsMatch, setPasswordsMatch] = useState(true);
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
+
+    const handleConfirmPasswordChange = (event) => {
+        setConfirmPassword(event.target.value);
+    };
+
+    const handleBlur = () => {
+        if(confirmPassword === '')
+            return;
+
+        setPasswordsMatch(password === confirmPassword);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Verifica se as passwords são iguais
-        if (password !== confirmPassword) {
-            alert('As senhas não são iguais');
-            return;
-        }
+
+        setPasswordsMatch(password === confirmPassword);
 
         // console.log('name:', name);
         // console.log('Email:', email);
@@ -87,7 +100,9 @@ function UserRegistration() {
                         className="register"
                         id="password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        //onChange={(e) => setPassword(e.target.value)}
+                        onChange={handlePasswordChange}
+                        onBlur={handleBlur}
                         required
                         placeholder="Senha"
                     />
@@ -98,7 +113,9 @@ function UserRegistration() {
                         className="register"
                         id="confirmPassword"
                         value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        //onChange={(e) => setConfirmPassword(e.target.value)}
+                        onChange={handleConfirmPasswordChange}
+                        onBlur={handleBlur}
                         required
                         placeholder="Confirmar password"
                     />
@@ -180,6 +197,7 @@ function UserRegistration() {
                         placeholder="País"
                     />
                 </div>
+                {!passwordsMatch && <p className="password-match">As senhas não são iguais</p>}
                 <button type="submit" className="btn-cadastrar" onClick={() => handleButtonClick({
                     name,
                     email,
