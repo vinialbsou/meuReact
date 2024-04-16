@@ -223,7 +223,7 @@ function UserRegistration() {
                         </button>
                     </form>
                 </div>
-            )};
+            )}
         </>
     );
 }
