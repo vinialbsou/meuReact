@@ -1,42 +1,54 @@
-import React, { useState } from 'react';
-import { TextField, Button, Typography, Container, Link } from '@mui/material';
-import { styled } from '@mui/material/styles'; // Importe styled
+import React, {useState} from 'react';
+import {Button, Container, Link, TextField, Typography} from '@mui/material';
+import {makeStyles} from '@mui/styles';
+import {useDispatch} from 'react-redux';
+import {userSignIn} from "../reducers/users";
+import {setAuthToken} from "../reducers/userToken";
 
-const useStyles = styled((theme) => ({
+const useStyles = makeStyles({
     root: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        marginTop: theme.spacing(8),
+        marginTop: '8',
     },
     form: {
         width: '100%',
-        marginTop: theme.spacing(1),
+        marginTop: '1',
     },
     submit: {
-        margin: theme.spacing(3, 0, 2),
-        backgroundColor: '#ff0000',
+        margin: '3 0 2',
+        backgroundColor: '#007bff',
         color: '#fff',
         '&:hover': {
-            backgroundColor: '#cc0000',
+            backgroundColor: '#025980',
         },
     },
-}));
+});
 
 const Login = () => {
+
     const classes = useStyles();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const dispatch = useDispatch()
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(`Email: ${email}, Password: ${password}`);
-        // Adicione aqui a lógica para autenticação
+    const handleSubmit = (values) => {
+
+        dispatch({
+            type: userSignIn,
+            payload: {
+                email: `${email}`,
+                password: `${password}`,
+            }
+        })
+
+        //console.log(`Email: ${email}, Password: ${password}`, 'valores:' ,values);
     };
 
     return (
         <Container component="main" maxWidth="xs">
-            <br />
+            <br/>
             <div className={classes.root}>
                 <Typography component="h1" variant="h5">
                     Login
